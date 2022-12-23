@@ -25,12 +25,11 @@ while True:
     fully = re.search(r'"FullyCharged" = (Yes|No)', strOutput).groups(0)[0]
     state = int(re.search(r'"StateOfCharge"=(\d+)', strOutput).groups(0)[0])
 
-    if external == 'Yes':
-        if isCharging == 'Yes':
-            if fully == 'Yes' or state >= 99:
-                requests.get('http://192.168.1.30:8088/releOff') #Command to get relay server OFF
-    elif isCharging == 'No' and state <= 10:
-        requests.get('http://192.168.1.30:8088/releOn') #Command to get srelay server ON command
+    if external == 'Yes' or isCharging == 'Yes':
+        if fully == 'Yes' or state >= 99:
+            requests.get('http://192.168.1.30/relayOff') #Command to get relay server OFF
+    elif (external == 'No' or isCharging == 'No') and state <= 10:
+        requests.get('http://192.168.1.30/relayOn') #Command to get relay server ON command
 
     now = datetime.now()
     horario = now.strftime('%H:%M:%S')
