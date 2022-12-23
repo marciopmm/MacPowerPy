@@ -32,6 +32,7 @@ while True:
         requests.get('http://192.168.1.30/relayOn') #Command to get relay server ON command
 
     now = datetime.now()
+    
     horario = now.strftime('%H:%M:%S')
 
     sys.stdout.write(f"({bcolors.WARNING}{horario}{bcolors.ENDC}) - {bcolors.OKBLUE}Conector Externo: {bcolors.BOLD}{external == 'Yes'}{bcolors.ENDC}{bcolors.ENDC} | {bcolors.OKCYAN}Carregando: {bcolors.BOLD}{isCharging == 'Yes'}{bcolors.ENDC}{bcolors.ENDC} | {bcolors.OKGREEN}Estado da Carga: {bcolors.BOLD}{state}%{bcolors.ENDC} \r")
